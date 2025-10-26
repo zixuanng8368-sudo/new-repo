@@ -1,11 +1,387 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New-Repo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Zi Xuan — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --muted: #9aa4b2;
+            --accent: #7c3aed;
+            --glass: rgba(255, 255, 255, 0.03);
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #061022 0%, var(--bg) 100%);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 24px
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #4f46e5);
+            display: grid;
+            place-items: center;
+            font-weight: 800
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            margin-left: 18px
+        }
+
+        nav a:hover {
+            color: #fff
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 32px;
+            align-items: center;
+            margin-top: 36px
+        }
+
+        .hero-left h1 {
+            font-size: clamp(28px, 4vw, 40px);
+            margin: 0
+        }
+
+        .headline {
+            color: var(--accent)
+        }
+
+        .intro {
+            margin-top: 12px;
+            color: var(--muted);
+            max-width: 60ch
+        }
+
+        .cta {
+            margin-top: 18px
+        }
+
+        .btn {
+            background: var(--accent);
+            border: 0;
+            padding: 10px 16px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6)
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1f2a44, #13304b);
+            display: grid;
+            place-items: center;
+            font-size: 28px
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px
+        }
+
+        .skill {
+            background: var(--glass);
+            padding: 6px 10px;
+            border-radius: 8px;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        main {
+            margin-top: 40px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px
+        }
+
+        .project {
+            padding: 16px;
+            border-radius: 10px
+        }
+
+        .project h3 {
+            margin: 0 0 8px 0
+        }
+
+        .project p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .project .tags {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 8px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px
+        }
+
+        footer {
+            margin-top: 48px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+            padding: 24px 0
+        }
+
+        /* responsive */
+        @media (max-width:980px) {
+            .hero {
+                grid-template-columns: 1fr
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media (max-width:600px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            nav {
+                margin-top: 8px
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px
+            }
+        }
+
+        /* simple form */
+        form {
+            display: grid;
+            gap: 8px
+        }
+
+        input,
+        textarea {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 10px;
+            border-radius: 8px;
+            color: inherit
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--muted)
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo">Zx</div>
+                <div>
+                    <div style="font-weight:700">Zi Xuan</div>
+                    <div style="font-size:12px;color:var(--muted)">Front‑end • Open Source • Design</div>
+                </div>
+            </div>
+            <nav>
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-left">
+                <h1>Hi — I’m <span class="headline">Zi Xuan</span>, a student and developer building delightful web
+                    experiences.</h1>
+                <p class="intro">I design and build clean, accessible websites and small web apps. I’m currently
+                    studying Computer &amp; Informatics at University Malaysia Sabah and working on open-source projects
+                    and my cafe "Board &amp; Brew".</p>
+                <div class="cta">
+                    <a href="#contact" class="btn">Get in touch</a>
+                </div>
+            </div>
+
+            <aside class="card profile">
+                <div class="avatar">ZX</div>
+                <div style="text-align:center">
+                    <div style="font-weight:700">Zi Xuan NG</div>
+                    <div style="font-size:13px;color:var(--muted)">Faculty of Computer &amp; Informatics — UMS</div>
+                </div>
+                <div class="skills">
+                    <div class="skill">HTML</div>
+                    <div class="skill">CSS</div>
+                    <div class="skill">Java</div>
+                    <div class="skill">OpenGL</div>
+                    <div class="skill">ESP32</div>
+                </div>
+            </aside>
+        </section>
+
+        <main>
+            <section id="projects">
+                <div class="section-title">
+                    <h2>Selected Projects</h2>
+                    <div style="color:var(--muted);font-size:14px">3 items</div>
+                </div>
+
+                <div class="grid">
+                    <article class="card project">
+                        <h3>Board &amp; Brew — Card Game Cafe Website</h3>
+                        <p>A responsive website for a local card game cafe with booking and events pages.</p>
+                        <div class="tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">Responsive</span>
+                        </div>
+                    </article>
+
+                    <article class="card project">
+                        <h3>Smart Parking (ESP32)</h3>
+                        <p>IoT project that detects entry/exit using RFID and displays slot status on an OLED.</p>
+                        <div class="tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">RFID</span>
+                            <span class="tag">C</span>
+                        </div>
+                    </article>
+
+                    <article class="card project">
+                        <h3>2D OpenGL Animation</h3>
+                        <p>A short 1-minute animation built with OpenGL showing two characters and small dragons.</p>
+                        <div class="tags">
+                            <span class="tag">OpenGL</span>
+                            <span class="tag">C++</span>
+                            <span class="tag">Animation</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="about" style="margin-top:28px">
+                <div class="section-title">
+                    <h2>About</h2>
+                </div>
+                <div class="card" style="padding:20px">
+                    <p style="color:var(--muted);margin:0">I’m a student and hobbyist developer with a keen interest in
+                        web development, embedded systems and games. I enjoy building small projects that solve real
+                        problems—especially on campus and local communities.</p>
+                </div>
+            </section>
+
+            <section id="contact" style="margin-top:28px">
+                <div class="section-title">
+                    <h2>Contact</h2>
+                </div>
+                <div class="card"
+                    style="padding:16px;display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start">
+                    <div>
+                        <form action="#"
+                            onsubmit="alert('This is a demo form — replace with your backend');return false;">
+                            <input placeholder="Your name" required>
+                            <input placeholder="Your email" required>
+                            <textarea placeholder="Message" rows="5" required></textarea>
+                            <div style="margin-top:8px"><button class="btn" type="submit">Send message</button></div>
+                        </form>
+                    </div>
+
+                    <div style="display:flex;flex-direction:column;gap:10px">
+                        <div style="color:var(--muted);font-size:14px">Prefer email?</div>
+                        <div style="font-weight:700">zixuan@example.com</div>
+                        <div style="color:var(--muted);font-size:13px">Based in Kota Kinabalu, Malaysia</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            © 2025 Zi Xuan — Built with HTML & CSS
+        </footer>
+    </div>
 </body>
+
 </html>
